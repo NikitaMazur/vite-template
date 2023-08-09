@@ -1,0 +1,77 @@
+@import 'styles/variables.module';
+@import 'styles/mixins';
+
+:global(.ant-table-thead) {
+  background: $gray-100;
+}
+
+.table {
+  background: $white;
+  border-radius: 8px;
+  max-width: 100%;
+  overflow: auto;
+  table,
+  th,
+  td {
+    border: none;
+  }
+  table {
+    margin: 0;
+  }
+  :global {
+    .ant-table-thead > tr > th {
+      background-color: $white;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: $blue-gray-500;
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 15px;
+      padding-top: 12px;
+      padding-bottom: 12px;
+      &::before {
+        display: none;
+      }
+      &:first-child {
+        padding-left: 24px;
+      }
+    }
+    .ant-table-tbody > tr {
+      &:last-child {
+        td {
+          border-bottom: none;
+        }
+      }
+      & > td {
+        padding-top: 13px;
+        padding-bottom: 13px;
+        height: 62px;
+        &:first-child {
+          padding-left: 24px;
+        }
+      }
+    }
+    .ant-table-tbody > tr.ant-table-row-selected > td {
+      background: $blue-50;
+    }
+    .ant-table-column-sorters {
+      justify-content: flex-start;
+      flex: 0 1 auto;
+    }
+    .ant-table-column-title {
+      flex: 0 1 auto;
+    }
+  }
+}
+
+.empty {
+  min-height: 100px;
+}
+
+.not-found-block {
+  margin-bottom: 58px;
+  padding-top: 20px;
+  p {
+    font-size: 16px;
+  }
+}

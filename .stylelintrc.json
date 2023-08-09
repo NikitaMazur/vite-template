@@ -1,0 +1,57 @@
+{
+  "extends": [
+    "stylelint-config-standard",
+    "stylelint-prettier/recommended",
+    "stylelint-config-prettier"
+  ],
+  "fix": true,
+  "formatter": "verbose",
+  "plugins": ["stylelint-scss"],
+  "rules": {
+    "selector-type-case": "lower",
+    "at-rule-no-unknown": null,
+    "scss/at-rule-no-unknown": true,
+    "declaration-empty-line-before": "never",
+    "rule-empty-line-before": [
+      "always-multi-line",
+      {
+        "except": ["inside-block"],
+        "ignore": ["after-comment"]
+      }
+    ],
+    "no-descending-specificity": null,
+    "declaration-block-no-duplicate-properties": true,
+    "at-rule-allowed-list": ["include", "import", "keyframes", "mixin", "extend", "media", "each"],
+    "no-duplicate-selectors": true,
+    "color-named": "never",
+    "color-hex-length": "long",
+    "selector-attribute-quotes": "always",
+    "property-no-vendor-prefix": true,
+    "value-no-vendor-prefix": true,
+    "function-url-quotes": "always",
+    "font-family-name-quotes": "always-unless-keyword",
+    "at-rule-no-vendor-prefix": true,
+    "selector-no-vendor-prefix": true,
+    "no-invalid-double-slash-comments": null,
+    "declaration-block-single-line-max-declarations": 1,
+    "comment-no-empty": null,
+    "comment-whitespace-inside": null,
+    "media-feature-name-no-vendor-prefix": true,
+    "selector-class-pattern": null,
+    "annotation-no-unknown": null,
+    "import-notation": "string",
+    "property-no-unknown": [
+      true,
+      {
+        "ignoreProperties": ["composes", "activity-block-width", "horizontal-label-width"]
+      }
+    ],
+    "selector-pseudo-class-no-unknown": [
+      true,
+      {
+        "ignorePseudoClasses": ["global", "local", "export"]
+      }
+    ]
+  },
+  "customSyntax": "postcss-scss"
+}

@@ -1,0 +1,111 @@
+@import 'styles/variables.module';
+
+@mixin extra-sm {
+  @media (max-width: #{$screen-extra-sm}) {
+    @content;
+  }
+}
+
+@mixin extra-sm-v3 {
+  @media (max-width: #{$screen-extra-sm-v3}) {
+    @content;
+  }
+}
+
+@mixin sm {
+  @media (max-width: #{$screen-sm}) {
+    @content;
+  }
+}
+
+@mixin min-sm {
+  @media (min-width: #{$screen-sm + 1px}) {
+    @content;
+  }
+}
+
+@mixin md {
+  @media (max-width: #{$screen-md}) {
+    @content;
+  }
+}
+
+@mixin min-md {
+  @media (min-width: #{$screen-md + 1px}) {
+    @content;
+  }
+}
+
+@mixin md-v2 {
+  @media (max-width: #{$screen-md-v2}) {
+    @content;
+  }
+}
+
+@mixin min-md-and-lg {
+  @media (min-width: #{$screen-md + 1px}) and (max-width: #{$screen-lg}) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media (max-width: #{$screen-lg}) {
+    @content;
+  }
+}
+
+@mixin min-lg {
+  @media (min-width: #{$screen-lg + 1px}) {
+    @content;
+  }
+}
+
+@mixin xl {
+  @media (max-width: #{$screen-xl}) {
+    @content;
+  }
+}
+
+@mixin min-xl {
+  @media (min-width: #{$screen-xl + 1px}) {
+    @content;
+  }
+}
+
+@mixin shadow-small {
+  box-shadow:
+    0 2px 4px rgba($gray-800, 0.04),
+    0 2px 5px rgba($gray-500, 0.04);
+}
+
+@mixin shadow-small-illumi {
+  box-shadow: 0 0 0 2px rgba($blue-400, 0.3);
+}
+
+@mixin shadow-base {
+  box-shadow:
+    0 7px 12px rgba($gray-500, 0.03),
+    0 2px 4px rgba($gray-700, 0.03);
+}
+
+@mixin shadow-large {
+  box-shadow:
+    0 12px 16px -3px rgba($gray-800, 0.05),
+    0 6px 6px -2px rgba($gray-500, 0.06);
+}
+
+@mixin shadow-xl {
+  box-shadow:
+    2px 24px 28px -5px rgba($gray-800, 0.08),
+    2px 8px 12px -2px rgba($gray-500, 0.08);
+}
+
+@mixin shadow-2xl {
+  box-shadow:
+    0 36px 48px -12px rgba($gray-800, 0.2),
+    0 16px 12px rgba($gray-500, 0.03);
+}
+
+@mixin shadow-inner {
+  box-shadow: inset 0 1px 2px rgba($black, 0.05);
+}

@@ -1,0 +1,27 @@
+@import 'styles/variables.module';
+
+.table-wrapper {
+  border: 1px solid $gray-100;
+  border-radius: 8px;
+  :global {
+    .ant-table-empty {
+      th {
+        pointer-events: none;
+        :global {
+          .ant-table-column-sorter {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+.pagination-wrapper {
+  padding-top: 20px;
+  margin-top: auto;
+  & > div {
+    margin: 0;
+    width: 100%;
+  }
+}

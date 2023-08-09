@@ -1,0 +1,173 @@
+{
+  "extends": [
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript",
+    "plugin:prettier/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true,
+    "jest": true
+  },
+  "globals": {
+    "vi": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      "modules": true,
+      "globalReturn": true
+    }
+  },
+  "plugins": ["react", "@typescript-eslint", "import"],
+  "settings": {
+    "react": {
+      "version": "18.2",
+      "createClass": "createClass"
+    },
+    "import/resolver": {
+      "vite": {
+        "configPath": "vite.config.ts"
+      },
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"],
+        "moduleDirectory": ["node_modules", "src/"]
+      },
+      "typescript": {
+        "project": "./tsconfig.json"
+      }
+    }
+  },
+  "rules": {
+    "curly": ["error", "all"],
+    "comma-dangle": ["error", "always-multiline"],
+    "key-spacing": ["error", { "beforeColon": false, "afterColon": true }],
+    "spaced-comment": [
+      "error",
+      "always",
+      {
+        "line": { "exceptions": ["/"], "markers": ["/"] },
+        "block": { "exceptions": ["*"], "markers": ["/"], "balanced": true }
+      }
+    ],
+    "quote-props": ["error", "as-needed"],
+    "prefer-promise-reject-errors": ["off"],
+    "no-console": ["error", { "allow": ["warn", "error"] }],
+    "no-multiple-empty-lines": ["error", { "max": 1, "maxEOF": 0, "maxBOF": 0 }],
+    "no-unused-vars": ["error", { "args": "none", "ignoreRestSiblings": true }],
+    "object-curly-spacing": ["error", "always"],
+    "@typescript-eslint/object-curly-spacing": ["error", "always"],
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-curly-spacing": [
+      2,
+      {
+        "when": "never",
+        "allowMultiline": true,
+        "children": {
+          "when": "never"
+        }
+      }
+    ],
+    "react/jsx-uses-vars": ["error"],
+    "react/prop-types": ["off"],
+    "react/require-default-props": ["off"],
+    "react/display-name": ["off", { "ignoreTranspilerName": true }],
+    "jsx-quotes": ["error", "prefer-double"],
+    "template-curly-spacing": "off",
+    "array-bracket-spacing": "error",
+    "import/order": [
+      "error",
+      {
+        "groups": [["builtin", "external"], "internal", ["parent", "sibling", "index"]],
+        "pathGroups": [
+          {
+            "pattern": "react",
+            "group": "builtin",
+            "position": "before"
+          },
+          {
+            "pattern": "@ds-frontend/*",
+            "group": "external"
+          },
+          {
+            "pattern": "libs/dayjs",
+            "group": "external"
+          },
+          {
+            "pattern": "types{,/**/*}",
+            "group": "internal",
+            "position": "before"
+          },
+          {
+            "pattern": "common/**/*",
+            "group": "internal"
+          },
+          {
+            "pattern": "layouts/**/*",
+            "group": "internal"
+          },
+          {
+            "pattern": "pages/**/*",
+            "group": "internal"
+          },
+          {
+            "pattern": "store/**/*",
+            "group": "internal"
+          },
+          {
+            "pattern": "api",
+            "group": "internal"
+          },
+          {
+            "pattern": "init",
+            "group": "internal"
+          },
+          {
+            "pattern": "@img/**/*",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "styles/**/*",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "./*.+(scss|sass|css)",
+            "group": "sibling",
+            "patternOptions": { "matchBase": true },
+            "position": "after"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["react"],
+        "newlines-between": "always",
+        "distinctGroup": false,
+        "warnOnUnassignedImports": true
+      }
+    ],
+    "no-restricted-imports": [
+      "error",
+      {
+        "paths": [
+          {
+            "name": "lodash",
+            "message": "Please import methods directly (import <name> from 'lodash/<name>'"
+          }
+        ]
+      }
+    ],
+    "import/newline-after-import": ["error", { "count": 1 }],
+    "import/no-named-as-default": 0,
+    "import/export": 0,
+    "@typescript-eslint/no-unused-vars": ["error", { "ignoreRestSiblings": true }],
+    "@typescript-eslint/semi": ["error", "never"],
+    "space-infix-ops": ["error", { "int32Hint": false }]
+  }
+}

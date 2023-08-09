@@ -1,0 +1,95 @@
+@import 'styles/variables.module';
+@import 'styles/mixins';
+
+.modal-wrapper {
+  max-width: 600px;
+  width: 100% !important;
+  padding-bottom: 0;
+
+  @include shadow-xl;
+  :global {
+    .ant-modal-header {
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+      margin: 0 16px;
+      padding: 16px 0;
+    }
+    .ant-modal-content {
+      border-radius: 8px;
+    }
+    .ant-modal-body {
+      padding: 24px 24px 0;
+    }
+    .ant-btn {
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
+}
+
+.default-caution {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  margin-right: 16px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: $blue-50;
+}
+
+.caution {
+  composes: default-caution;
+  background-color: $red-100;
+}
+
+.warning {
+  composes: default-caution;
+  background-color: $yellow-100;
+}
+
+.info {
+  composes: default-caution;
+  background-color: $blue-100;
+}
+
+$content-padding: 55px;
+
+.modal-content {
+  position: relative;
+  padding-left: $content-padding;
+  &.withoutIcon {
+    padding-left: 0;
+  }
+}
+
+.modal-body {
+  padding: 26px 0 0;
+  &.no-padding {
+    margin-left: -#{$content-padding};
+  }
+}
+
+.title-wrapper {
+  padding-right: 20px;
+}
+
+.field-wrapper {
+  padding-top: 16px;
+}
+
+.validation-label {
+  padding-top: 11px;
+}
+
+.validation-field {
+  margin-bottom: 4px;
+}
+
+.email-link {
+  text-decoration: underline;
+}

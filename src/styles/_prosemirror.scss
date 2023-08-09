@@ -1,0 +1,166 @@
+@import './variables.module';
+
+.drop-cursor {
+  background-color: $blue-300 !important;
+}
+
+.ProseMirror {
+  outline: none;
+  font-family: 'Inter', sans-serif;
+  color: $blue-gray-700;
+  font-size: 14px;
+  line-height: 20px;
+  padding: 20px 0;
+  margin-top: -20px;
+  *::selection {
+    color: inherit;
+    background-color: $blue-100;
+  }
+  table {
+    width: 100%;
+    table-layout: fixed;
+    & > div {
+      display: table;
+      width: 100%;
+      table-layout: fixed;
+    }
+    th,
+    td {
+      border: 1px solid $blue-gray-200;
+      padding: 15px;
+      position: relative;
+      &.selectedCell {
+        background-color: $blue-50;
+      }
+    }
+    th {
+      background-color: $blue-gray-100;
+    }
+    p {
+      margin: 0;
+    }
+  }
+  & > .node-paragraph.is-editor-empty:first-child::before,
+  & > .node-paragraph.is-empty::before {
+    content: attr(data-placeholder);
+    font-size: 1em;
+    line-height: 24px;
+    color: $blue-gray-400;
+    font-weight: 500;
+    height: 0;
+    pointer-events: none;
+    display: block;
+    max-width: $activity-block-width;
+    margin: 0 auto;
+  }
+  code {
+    background-color: rgba(#616161, 0.1);
+    color: inherit;
+    padding: 0 3px;
+    font-size: 1em;
+  }
+  .aiPanel-content > div > pre {
+    background: #f4f5f7;
+    color: $black;
+    font-family: 'JetBrainsMono', monospace;
+    padding: 6px 1rem;
+    border-radius: 0.5rem;
+  }
+  pre {
+    & > code {
+      background-color: transparent;
+      padding: 0;
+    }
+  }
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  ul,
+  ol,
+  img,
+  iframe {
+    clear: both;
+  }
+  .node-taskList ul {
+    list-style: none;
+    padding-left: 15px;
+    li {
+      display: flex;
+      align-items: flex-start;
+      > label {
+        flex: 0 0 auto;
+        margin-right: 8px;
+        user-select: none;
+        font-size: 0;
+        height: 16px;
+        margin-top: 4px;
+      }
+      > div {
+        flex: 1 1 auto;
+      }
+    }
+  }
+  h1,
+  h2,
+  h3 {
+    font-weight: 700;
+    color: $blue-gray-700;
+  }
+  h1 {
+    font-size: 1.75em;
+    line-height: 40px;
+  }
+  h2 {
+    font-size: 1.5em;
+    line-height: 32px;
+  }
+  h3 {
+    font-size: 1.25em;
+    line-height: 28px;
+  }
+  & > p:not(:first-child) {
+    margin-top: 10px;
+  }
+  blockquote {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+    letter-spacing: 0.08px;
+    color: $blue-gray-400;
+    & + blockquote {
+      margin-top: -16px;
+    }
+  }
+  hr {
+    border: none;
+    border-top: 2px solid $blue-gray-200;
+    margin: 2rem 0;
+  }
+  a,
+  a:link,
+  a:visited {
+    color: $blue-500;
+    text-decoration: underline;
+  }
+  .mention {
+    color: $primary;
+    font-weight: 600;
+  }
+}
+
+#editor-content {
+  & > .ProseMirror {
+    & > * {
+      margin: 0 60px 1em;
+    }
+  }
+}
+
+.ProseMirror-hideselection * {
+  &:not(.ant-avatar)::selection {
+    background-color: inherit;
+    color: inherit;
+  }
+}

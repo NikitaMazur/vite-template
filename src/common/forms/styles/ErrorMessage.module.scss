@@ -1,0 +1,18 @@
+@import 'styles/variables.module';
+
+.error-message {
+  width: 100%;
+  color: $red-600;
+  font-size: 11px;
+  font-weight: 300;
+  display: flex;
+  align-items: flex-start;
+  i {
+    margin-right: 5px;
+    position: relative;
+    top: 2px;
+  }
+  span {
+    padding-top: 2px;
+  }
+}

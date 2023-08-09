@@ -1,0 +1,303 @@
+@import 'styles/variables.module';
+@import 'styles/mixins';
+
+$sizes:
+  'x-small' 12px 16px 3px 8px,
+  'small' 14px 20px 6px 10px,
+  'medium' 14px 20px 8px 12px,
+  'large' 16px 24px 8px 12px,
+  'x-large' 16px 24px 12px 24px;
+
+@each $name, $fontSize, $lineHeight, $paddingVertical, $paddingHorizontal in $sizes {
+  .#{$name} {
+    font-size: $fontSize;
+    line-height: $lineHeight;
+    padding: $paddingVertical $paddingHorizontal;
+  }
+}
+
+.left {
+  margin-right: 8px;
+}
+
+.right {
+  margin-left: 8px;
+}
+
+.align-left {
+  justify-content: flex-start;
+}
+
+.align-right {
+  justify-content: flex-end;
+}
+
+.align-center {
+  justify-content: center;
+}
+
+.spinner {
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+  circle {
+    stroke: $blue-gray-700;
+  }
+}
+
+.default {
+  border: 1px solid transparent;
+  border-radius: 4px;
+  text-align: center;
+  // rewrite antd default transition for links
+  transition:
+    background 200ms ease-in-out,
+    color 200ms ease-in-out,
+    border-color 200ms ease-in-out,
+    box-shadow 200ms ease-in-out,
+    filter 200ms ease-in-out;
+  color: $blue-gray-700;
+  outline: none;
+  display: inline-flex;
+  align-items: center;
+  font-weight: 500;
+  max-width: 100%;
+  white-space: nowrap;
+  &:hover {
+    text-decoration: none;
+  }
+  &.disabled {
+    color: $blue-gray-400;
+    cursor: not-allowed;
+    pointer-events: none;
+    .spinner {
+      circle {
+        stroke: $blue-gray-400;
+      }
+    }
+  }
+  &.loading {
+    // rewrite all additions to font color
+    color: transparent !important;
+    position: relative;
+    .spinner {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin: -10px 0 0 -10px;
+    }
+    &.x-small {
+      .spinner {
+        margin: -7px 0 0 -7px;
+      }
+    }
+  }
+}
+
+.full-width {
+  width: 100%;
+}
+
+.primary {
+  composes: default;
+  border-color: $blue-700;
+  background: $blue-700;
+  color: $white;
+  &:hover {
+    background: $blue-500;
+    border-color: $blue-500;
+    color: $white;
+  }
+  &.disabled {
+    background: $blue-300;
+    border-color: $blue-300;
+    &:not(.loading) {
+      color: $white;
+    }
+    .spinner {
+      circle {
+        stroke: $white;
+      }
+    }
+  }
+  &:active,
+  &:focus {
+    &:not(.disabled) {
+      background: $blue-800;
+      border-color: $blue-800;
+    }
+  }
+  .spinner {
+    circle {
+      stroke: $white;
+    }
+  }
+}
+
+.danger {
+  composes: default;
+  border-color: $red-700;
+  background: $red-700;
+  color: $white;
+  &:hover {
+    background: $red-500;
+    border-color: $red-500;
+    color: $white;
+  }
+  &.disabled {
+    background: $red-300;
+    border-color: $red-300;
+    &:not(.loading) {
+      color: $white;
+    }
+    .spinner {
+      circle {
+        stroke: $white;
+      }
+    }
+  }
+  &:active,
+  &:focus {
+    &:not(.disabled) {
+      background: $red-800;
+      border-color: $red-800;
+    }
+  }
+  .spinner {
+    circle {
+      stroke: $white;
+    }
+  }
+}
+
+.theme {
+  composes: default;
+  border-color: var(--theme-button-color);
+  background: var(--theme-button-color);
+  color: $white;
+  &:hover {
+    filter: brightness(110%);
+    color: $white;
+  }
+  &.disabled {
+    opacity: 0.7;
+    &:not(.loading) {
+      color: $white;
+    }
+    .spinner {
+      circle {
+        stroke: $white;
+      }
+    }
+  }
+  &:active,
+  &:focus {
+    &:not(.disabled) {
+      filter: brightness(120%);
+    }
+  }
+  .spinner {
+    circle {
+      stroke: $white;
+    }
+  }
+}
+
+.secondary {
+  composes: default;
+  border-color: $blue-50;
+  background: $blue-50;
+  &:hover {
+    background: $blue-300;
+    border-color: $blue-300;
+  }
+  &.disabled {
+    background: $blue-50;
+    border-color: $blue-50;
+  }
+  &:active,
+  &:focus {
+    &:not(.disabled) {
+      background: $blue-400;
+      border-color: $blue-400;
+    }
+  }
+}
+
+.tertiary {
+  composes: default;
+  border-color: $gray-200;
+  background: $white;
+  &:hover {
+    background: $gray-50;
+
+    @include shadow-small;
+  }
+  &.disabled {
+    background: $white;
+    border-color: $blue-gray-200;
+  }
+  &:active,
+  &:focus {
+    &:not(.disabled) {
+      background-color: $gray-100;
+
+      @include shadow-small;
+    }
+  }
+}
+
+.outline {
+  composes: default;
+  border-color: $blue-700;
+  background: $white;
+  color: $blue-700;
+  &:hover {
+    background: $blue-50;
+    color: $blue-700;
+
+    @include shadow-small;
+  }
+  &.disabled {
+    background: $white;
+    border-color: $blue-500;
+    color: $blue-700;
+  }
+  &:active,
+  &:focus {
+    &:not(.disabled) {
+      background-color: $blue-100;
+      color: $blue-700;
+
+      @include shadow-small;
+    }
+  }
+}
+
+.text {
+  composes: default;
+  border-color: transparent;
+  background: $white;
+  &:hover {
+    background: $gray-50;
+    border-color: transparent;
+  }
+  &.disabled {
+    background: $white;
+    border-color: transparent;
+  }
+  &:active,
+  &:focus {
+    &:not(.disabled) {
+      background-color: $gray-100;
+      border-color: transparent;
+    }
+  }
+}
+
+.link {
+  composes: default;
+  border-color: transparent;
+  background-color: transparent;
+  padding: 0;
+}

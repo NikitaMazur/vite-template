@@ -1,0 +1,118 @@
+@import 'styles/variables.module';
+@import 'styles/mixins';
+
+.input {
+  border-radius: 6px;
+  border-color: $gray-200;
+  overflow: hidden;
+  width: 100%;
+  display: block;
+  & > div.input {
+    border-color: transparent !important;
+    box-shadow: none !important;
+  }
+  input {
+    color: $blue-gray-700;
+    height: 40px;
+    &::placeholder {
+      color: $blue-gray-400;
+      font-weight: 300;
+    }
+  }
+  &:hover {
+    border-color: $gray-400;
+
+    @include shadow-small;
+  }
+  &.error,
+  &.error:hover {
+    border-color: $red-500;
+  }
+  &.small {
+    &:global(.ant-input-number-affix-wrapper) {
+      padding-inline-start: 12px;
+    }
+    :global {
+      .ant-input-number-handler-wrap {
+        width: 16px;
+      }
+      .ant-input-number-handler-up-inner,
+      .ant-input-number-handler-down-inner {
+        width: 8px;
+        i {
+          font-size: 10px;
+        }
+      }
+    }
+    input {
+      height: 20px;
+      padding: 0 8px 1px;
+      font-size: 12px;
+      line-height: 16px;
+    }
+  }
+  &.medium {
+    input {
+      padding: 0 8px 1px;
+      height: 32px;
+    }
+  }
+  &.large {
+    input {
+      padding: 0 16px;
+      height: 40px;
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
+
+  //global styles
+  &:global(.ant-input-number-focused),
+  &:global(.ant-input-number-affix-wrapper-focused) {
+    border-color: $blue-500;
+
+    @include shadow-small;
+  }
+  &:global(.ant-input-number-disabled) {
+    background-color: $gray-50;
+    border-color: $gray-200;
+    input {
+      color: $blue-gray-400;
+    }
+  }
+  &:global(
+      .ant-input-number-affix-wrapper:not(
+          .ant-input-number-affix-wrapper-disabled,
+          .ant-input-number-affix-wrapper-focused
+        ):hover
+    ):not(.error) {
+    border-color: $gray-200;
+  }
+  :global {
+    .ant-input-number-prefix {
+      margin-inline-end: 8px;
+      & ~ div {
+        input {
+          padding-left: 0;
+        }
+      }
+    }
+    .ant-input-number-handler-up,
+    .ant-input-number-handler-down,
+    .ant-input-number-handler-up:hover,
+    .ant-input-number-handler-down:hover {
+      // rewrite antd important style
+      height: 50% !important;
+    }
+    .ant-input-number-handler {
+      border-left-color: $gray-300;
+    }
+    .ant-input-number-handler-wrap {
+      opacity: 1;
+    }
+  }
+}
+
+.icon {
+  font-weight: 800;
+}

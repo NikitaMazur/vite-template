@@ -1,0 +1,50 @@
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "module": "es2020",
+    "moduleResolution": "node",
+    "jsx": "preserve",
+    "baseUrl": "./src",
+    "paths": {
+      "@ds-frontend/*": ["common/ds-frontend/packages/*"],
+      "common/*": ["common/*"],
+      "@img/*": ["img/*"],
+      "layouts/*": ["layouts/*"],
+      "libs/*": ["common/libs/*"],
+      "pages/*": ["pages/*"],
+      "store/*": ["store/*"],
+      "styles": ["styles"],
+      "types": ["types"],
+      "api": ["api.ts"],
+      "init": ["init.ts"],
+      "polyfills": ["polyfills.ts"]
+    },
+    /* Bundler mode */
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "allowJs": true,
+    "lib": [
+      "dom",
+      "es5",
+      "scripthost",
+      "es2015.promise"
+    ],
+    "types": [
+      "vitest/importMeta",
+      "vitest/globals",
+      "node",
+      "vite/client"
+    ]
+  },
+  "exclude": ["./node_modules"]
+}

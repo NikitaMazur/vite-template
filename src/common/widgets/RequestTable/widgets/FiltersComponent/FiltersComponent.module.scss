@@ -1,0 +1,64 @@
+@import 'styles/variables.module';
+@import 'styles/mixins';
+
+.filters-wrapper {
+  background-color: $white;
+  padding: 16px 0;
+}
+
+.filter-icon {
+  margin-right: 8px;
+  sup {
+    margin-top: 3px;
+    margin-right: 2px;
+    outline: 2px solid $white;
+  }
+}
+
+.filters-block {
+  padding: 15px 24px 0;
+  border-top: 1px solid $gray-200;
+  margin-top: 15px;
+  color: $blue-gray-500;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.search-block {
+  padding: 0 24px;
+}
+
+.filters-button {
+  &.is-selected {
+    background-color: $blue-gray-100;
+    border-color: $gray-300;
+    color: $gray-600;
+  }
+  & > span {
+    line-height: 0;
+  }
+}
+
+.search-results {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 300;
+  color: $blue-gray-500;
+  padding: 17px 24px 0;
+  span {
+    font-weight: 500;
+    color: $blue-gray-700;
+  }
+}
+
+.search {
+  width: 320px;
+  max-width: 100%;
+}
+
+.refresh-button {
+  i {
+    position: relative;
+    top: 1px;
+  }
+}
