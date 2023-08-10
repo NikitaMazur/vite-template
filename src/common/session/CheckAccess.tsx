@@ -1,23 +1,16 @@
-import { Fragment, ReactNode } from 'react'
+import { ReactNode, useMemo } from 'react'
 
-import useCheckAccess from './useCheckAccess'
+import AccessType, * as accesses from './access'
 
-export type CheckAccessProps = {
-  access?: string | string[] | null
-  accessRule?: 'some' | 'every'
+type Props = {
+  access: AccessType | AccessType[]
+  rule?: 'some' | 'every'
   fallback?: ReactNode
   children: ReactNode
 }
 
-export default function CheckAccess({
-  access,
-  accessRule = 'some',
-  fallback,
-  children,
-}: CheckAccessProps) {
-  if (access === undefined) {
-    return <Fragment>{children}</Fragment>
-  }
-  const hasAccesses = useCheckAccess(access)
-  return <Fragment>{hasAccesses[accessRule](Boolean) ? children : fallback}</Fragment>
+export default function CheckAccess({ access, rule = 'some', fallback, children }: Props) {
+  const level = useMemo(() => new Set([accesses.F_PUBLIC]), [])
+
+  return [access].flat()[rule]((a) => level.has(a)) ? children : fallback
 }

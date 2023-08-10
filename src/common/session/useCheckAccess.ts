@@ -1,11 +1,8 @@
-import { useSelector, shallowEqual } from 'react-redux'
+import { useMemo } from 'react'
 
-import { userLevelSelector } from './access'
+import AccessType, * as accesses from './access'
 
-export default function useCheckAccess(accesses?: string | string[] | null) {
-  const state = useSelector((state) => state, shallowEqual)
-  const level = userLevelSelector({
-    ...state,
-  })
-  return [accesses].flat().map((acc) => level.includes(acc || ''))
+export default function useCheckAccess(access?: AccessType | AccessType[] | null) {
+  const level = useMemo(() => new Set([accesses.F_PUBLIC]), [])
+  return [access].flat().map((acc) => level.has(acc || ''))
 }
