@@ -34,6 +34,7 @@ export default defineConfig(({ mode }) => {
             lodash: ['lodash'],
             mui: ['@mui/lab', '@mui/material', '@emotion/react', '@emotion/styled'],
             react: ['react-dom', 'react', 'react-router', 'react-router-dom'],
+            formik: ['formik', 'formik-mui', 'formik-mui-x-date-pickers'],
           },
         },
       },

@@ -1,8 +1,8 @@
-import { TextField as TextInput } from '@mui/material'
+import { TextField as TextInput, Select } from 'formik-mui'
 
 import BaseFieldHOC from './BaseFieldHOC'
-// import TextInput, { TextInputProps } from './inputs/TextInput'
 
 const TextField = BaseFieldHOC(TextInput)
+const SelectField = BaseFieldHOC(Select)
 
-export { TextField }
+export { TextField, SelectField }

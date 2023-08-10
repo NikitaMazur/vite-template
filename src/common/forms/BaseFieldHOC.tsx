@@ -1,60 +1,31 @@
-import { ComponentProps, ComponentType, useMemo } from 'react'
-import { useField } from 'formik'
-import isFunction from 'lodash/isFunction'
+import { ComponentProps, ComponentType } from 'react'
+import { Field, FieldConfig } from 'formik'
+import { BoxProps } from '@mui/material'
 
-import formatMetaError from 'common/utils/formatMetaError'
+import BaseFieldLayout from './BaseFieldLayout'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-type BaseFieldHOCProps<C extends ComponentType<any>> = {
-  name: string
-  validateOnMount?: boolean
-  inputProps?: ComponentProps<C>
-  onChange?: (e: React.ChangeEvent<HTMLElement>) => void
-  onBlur?: (e: React.FocusEvent<HTMLElement>) => void
-  onFocus?: (e: React.FocusEvent<HTMLElement>) => void
-}
+type BaseFieldHOCProps<C extends ComponentType<any>> = Omit<
+  ComponentProps<C>,
+  'field' | 'form' | 'meta'
+> &
+  FieldConfig & { box?: BoxProps }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function BaseFieldHOC<C extends ComponentType<any>>(Component: C) {
   return function WrappedComponent({
     name,
-    validateOnMount = false,
-    inputProps,
+    as,
     onChange,
     onBlur,
-    onFocus,
+    validate,
+    box,
+    ...rest
   }: BaseFieldHOCProps<C>) {
-    const [field, meta] = useField(name)
-
-    const formattedError = useMemo(
-      () => formatMetaError(meta, validateOnMount),
-      [meta, validateOnMount],
+    return (
+      <BaseFieldLayout box={box}>
+        <Field {...rest} name={name} validate={validate} as={as} component={Component} />
+      </BaseFieldLayout>
     )
-
-    const handleChange = (e: React.ChangeEvent<HTMLElement>) => {
-      field.onChange && field.onChange(e)
-      if (isFunction(onChange)) {
-        onChange(e)
-      }
-    }
-
-    const handleBlur = (e: React.FocusEvent<HTMLElement>) => {
-      field.onBlur && field.onBlur(e)
-      if (isFunction(onBlur)) {
-        onBlur(e)
-      }
-    }
-
-    const props = {
-      ...field,
-      error: Boolean(inputProps?.error || formattedError),
-      helperText: inputProps?.helperText || formattedError,
-      onFocus,
-      onBlur: handleBlur,
-      onChange: handleChange,
-      ...(inputProps || {}),
-    } as ComponentProps<C>
-
-    return <Component {...props} />
   }
 }
