@@ -9,7 +9,7 @@ describe('composeValidators function', () => {
   test.each([
     [
       composeValidators(
-        (value) => required(value),
+        (value) => required()(value),
         (value) => maxLength(4)(value),
         (value) => email(value),
       )(text),
@@ -17,7 +17,7 @@ describe('composeValidators function', () => {
     ],
     [
       composeValidators(
-        (value) => required(value),
+        (value) => required()(value),
         (value) => maxLength(3, 'maxLength')(value),
         (value) => email(value),
       )(text),
@@ -25,13 +25,13 @@ describe('composeValidators function', () => {
     ],
     [
       composeValidators(
-        (value: unknown) => required(value),
+        (value: unknown) => required()(value),
         (value) => maxLength(3, 'maxLength')(value),
         (value) => email(value),
       )(null),
       constants.required,
     ],
-    [composeValidators((value) => required(value))(null), constants.required],
+    [composeValidators((value) => required()(value as string))(null), constants.required],
   ])('should return correct value', (response, result) => {
     expect(response).toEqual(result)
   })

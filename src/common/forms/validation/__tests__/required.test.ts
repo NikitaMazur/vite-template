@@ -3,14 +3,14 @@ import constants from '../constants'
 
 describe('required validation', () => {
   test.each([
-    [required('test'), undefined],
-    [required(null), constants.required],
-    [required(undefined), constants.required],
-    [required(''), constants.required],
-    [required(0), constants.required],
-    [required(null, 'Custom'), 'Custom'],
-    [required(undefined, 'Custom'), 'Custom'],
-    [required('', 'Custom'), 'Custom'],
+    [required()('test'), undefined],
+    [required()(null), constants.required],
+    [required()(undefined), constants.required],
+    [required()(''), constants.required],
+    [required()(0), constants.required],
+    [required('Custom')(null), 'Custom'],
+    [required('Custom')(undefined), 'Custom'],
+    [required('Custom')(''), 'Custom'],
   ])('should return correct value', (response, result) => {
     expect(response).toEqual(result)
   })
