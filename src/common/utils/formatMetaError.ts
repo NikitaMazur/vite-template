@@ -1,13 +1,10 @@
-import { FieldMetaState } from 'react-final-form'
+import { FieldMetaProps } from 'formik'
 
 export default function formatMetaError(
-  fieldMeta: FieldMetaState<unknown>,
+  fieldMeta: FieldMetaProps<unknown>,
   withoutTouched: boolean,
 ) {
   const error = () => {
-    if (fieldMeta.submitError && !fieldMeta.dirtySinceLastSubmit) {
-      return fieldMeta.submitError
-    }
     if (fieldMeta.error && (withoutTouched || fieldMeta.touched)) {
       return fieldMeta.error
     }

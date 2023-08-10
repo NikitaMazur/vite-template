@@ -1,61 +1,39 @@
-import { MouseEvent, useCallback, useEffect, useState } from 'react'
-import { Modal, ModalProps, Row, Col } from 'antd'
+import { MouseEvent, useCallback } from 'react'
+import { Button, Modal, ModalProps, Typography } from '@mui/material'
+import { LoadingButton, LoadingButtonProps } from '@mui/lab'
 
-import TextInput from 'common/forms/inputs/TextInput'
-import ErrorMessage from 'common/forms/ErrorMessage'
-import ModalFooter from 'common/widgets/ModalFooter'
-import Button, { ButtonProps } from 'common/widgets/Button'
-import Icon from 'common/widgets/Icon'
-import Typography from 'common/widgets/Typography'
-import cx from 'common/utils/classnames'
 import { useTranslations } from 'common/language'
-
-import ModalTitle, { ModalTitleProps } from './ModalTitle'
-import classNames from './ModalWrapper.module.scss'
 
 const stopPropagation = (e: MouseEvent<HTMLElement>) => {
   e.stopPropagation()
 }
 
-export type ModalConfirmationWrapperProps = ModalTitleProps &
-  ModalProps & {
-    show: boolean
-    wrapperClassName?: string
-    submitButtonText?: string
-    submitButtonProps?: Partial<ButtonProps>
-    cancelButtonText?: string
-    withoutCancel?: boolean
-    isLoading?: boolean
-    validationText?: string
-    validationErrorText?: string
-    validationFieldLabelText?: string
-    onHide: (e: MouseEvent<HTMLElement>) => void
-    onSubmit?: () => void
-  }
+export type ModalConfirmationWrapperProps = ModalProps & {
+  show: boolean
+  submitButtonText?: string
+  submitButtonProps?: LoadingButtonProps
+  cancelButtonText?: string
+  withoutCancel?: boolean
+  isLoading?: boolean
+  onHide: (e: MouseEvent<HTMLElement>) => void
+  onSubmit?: () => void
+  description: string
+}
 
 export default function ModalConfirmationWrapper({
   show,
   onHide,
-  destroyOnClose = true,
   title,
   description,
-  footer = null,
-  wrapperClassName,
   submitButtonText,
   submitButtonProps = {},
   cancelButtonText,
   withoutCancel = false,
   onSubmit,
-  type = 'error',
   isLoading = false,
-  validationText,
-  validationErrorText,
-  validationFieldLabelText,
-  icon,
   ...props
 }: ModalConfirmationWrapperProps) {
   const { gettext } = useTranslations()
-  const [value, setValue] = useState('')
 
   const handleSubmit = useCallback(
     async (e: MouseEvent<HTMLElement>) => {
@@ -65,70 +43,27 @@ export default function ModalConfirmationWrapper({
     [onSubmit, onHide],
   )
 
-  useEffect(() => {
-    setValue('')
-  }, [show])
-
-  const error = validationText && value !== validationText
-
   return (
-    <Modal
-      {...props}
-      open={show}
-      destroyOnClose={destroyOnClose}
-      className={cx(classNames.modalWrapper, wrapperClassName)}
-      closeIcon={<Icon name="close" size="large" color="info" />}
-      footer={footer}
-      onCancel={onHide}
-    >
+    <Modal {...props} open={show} onClose={onHide}>
       <main onClick={stopPropagation}>
         <div>
-          <div className={classNames.modalContent}>
-            <ModalTitle title={title} description={description} type={type} icon={icon} />
-            {validationText && (
-              <div className={classNames.fieldWrapper}>
-                <Row align="top" gutter={[9, 0]}>
-                  <Col>
-                    <Typography
-                      tag="div"
-                      size="sm"
-                      color="blue-gray-500"
-                      className={classNames.validationLabel}
-                    >
-                      {validationFieldLabelText || gettext('Name')}
-                    </Typography>
-                  </Col>
-                  <Col flex="auto">
-                    <TextInput
-                      onChange={setValue}
-                      value={value}
-                      className={classNames.validationField}
-                    />
-                    {validationErrorText && value && error && (
-                      <ErrorMessage text={validationErrorText} />
-                    )}
-                  </Col>
-                </Row>
-              </div>
-            )}
-          </div>
-          <ModalFooter withModalPadding={false}>
+          <Typography variant="h3">{title}</Typography>
+          <Typography variant="h5">{description}</Typography>
+          <div>
             {!withoutCancel && (
-              <Button onClick={onHide} type="tertiary">
-                {cancelButtonText || gettext('Cancel')}
-              </Button>
+              <Button onClick={onHide}>{cancelButtonText || gettext('Cancel')}</Button>
             )}
             {submitButtonText && (
-              <Button
+              <LoadingButton
                 {...submitButtonProps}
                 onClick={handleSubmit}
-                isLoading={isLoading}
-                disabled={Boolean(error)}
+                loading={isLoading}
+                loadingPosition="start"
               >
                 {submitButtonText}
-              </Button>
+              </LoadingButton>
             )}
-          </ModalFooter>
+          </div>
         </div>
       </main>
     </Modal>

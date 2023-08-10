@@ -33,18 +33,8 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "allowJs": true,
-    "lib": [
-      "dom",
-      "es5",
-      "scripthost",
-      "es2015.promise"
-    ],
-    "types": [
-      "vitest/importMeta",
-      "vitest/globals",
-      "node",
-      "vite/client"
-    ]
+    "lib": ["dom", "es5", "scripthost", "es2015.promise"],
+    "types": ["vitest/importMeta", "vitest/globals", "node", "vite/client"]
   },
   "exclude": ["./node_modules"]
 }
